@@ -1,4 +1,6 @@
 # EX. NO: 1(A) : IMPLEMENTATION OF CAESAR CIPHER
+# DATE : 29/04/2026
+# NAME : MAGESH BOOPATHI.M
 
 ## AIM:
 To implement the simple substitution technique named Caesar cipher using C language.
@@ -17,45 +19,43 @@ STEP-5: Display the cipher text obtained above.
 
 ## PROGRAM:
 ```python
-def encrypt(text, key):
-    result = ""
-
-    for ch in text:
-        if ch.isupper():
-            result += chr((ord(ch) - ord('A') + key) % 26 + ord('A'))
-        elif ch.islower():
-            result += chr((ord(ch) - ord('a') + key) % 26 + ord('a'))
-        else:
-            result += ch
-
-    return result
-
-
-def decrypt(text, key):
-    result = ""
-
-    for ch in text:
-        if ch.isupper():
-            result += chr((ord(ch) - ord('A') - key) % 26 + ord('A'))
-        elif ch.islower():
-            result += chr((ord(ch) - ord('a') - key) % 26 + ord('a'))
-        else:
-            result += ch
-
-    return result
-
-
-message = input("Enter the message: ")
-key = int(input("Enter the key: "))
-
-encrypted_text = encrypt(message, key)
-decrypted_text = decrypt(encrypted_text, key)
-
-print("Encrypted Text:", encrypted_text)
-print("Decrypted Text:", decrypted_text)
+#include <stdio.h> 
+#include <string.h> 
+#include <ctype.h> 
+void main() 
+{ 
+    char plain[10],cipher[10]; 
+    int key,i,length; 
+    int result; 
+    printf("\n Enter the plain text:"); 
+    scanf("%s", plain); 
+    printf("\n Enter the key value:"); 
+    scanf("%d", &key); 
+    printf("\n \n \t PLAIN TEXt: %s", plain); 
+    printf("\n \n \t ENCRYPTED TEXT:"); 
+    for(i=0, length = strlen(plain); i<length; i++) 
+    { 
+        cipher[i]=plain[i] + key; 
+        if (isupper(plain[i]) && (cipher[i] > 'Z')) 
+        cipher[i] = cipher[i] - 26; 
+        if (islower(plain[i]) && (cipher[i] > 'z')) 
+        cipher[i] = cipher[i] - 26; 
+        printf("%c", cipher[i]); 
+    } 
+    printf("\n \n \t AFTER DECRYPTION : "); 
+    for(i=0;i<length;i++) 
+    { 
+        plain[i]=cipher[i]-key; 
+        if(isupper(cipher[i])&&(plain[i]<'A')) 
+        plain[i]=plain[i]+26; 
+        if(islower(cipher[i])&&(plain[i]<'a')) 
+        plain[i]=plain[i]+26; 
+        printf("%c",plain[i]); 
+    } 
+}
 ```
 ## OUTPUT:
-<img width="1880" height="960" alt="image" src="https://github.com/user-attachments/assets/01c36438-1846-4d4e-82e2-43acfa46e2c4" />
+<img width="1902" height="1142" alt="image" src="https://github.com/user-attachments/assets/5a5805a5-e050-4e48-a6e3-5f65783c5621" />
 
 ## RESULT :
  Thus the implementation of ceasar cipher had been executed successfully.
